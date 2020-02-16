@@ -6,10 +6,14 @@ def range_validation(data, min, max):
 
 
 def type_validation(actual_type, desired_type):
-    pass
+    if actual_type == desired_type:
+        return True
+    else:
+        return False
 
 
-def length_validation(length, max):
-    pass
-
-
+def max_length_validation(length, max):
+    if length < max:
+        return True
+    else:
+        return False
