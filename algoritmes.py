@@ -7,4 +7,7 @@ def a_new_strategy():
 
 
 def heuristic_strategy():
+    #make four guesses with duplicates (e.g. aaaa, bbbb, etc.) and safe per letter how many there are.
+
+
     pass
