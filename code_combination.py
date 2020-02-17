@@ -12,8 +12,15 @@ def generate_code():
     return code
 
 
-def scub_combination_list(combination_list):
-    pass
+def scrub_combination_list(combination_list, feedback):
+    for index in range(len(combination_list)):
+
+        a = combination_list[index]
+
+        if combination_list[index] != feedback: #TODO: fix feedback bug
+            combination_list.remove(combination_list[index])
+
+    return combination_list
 
 
 def generate_four_letter_code_combinations():

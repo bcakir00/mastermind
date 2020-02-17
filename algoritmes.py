@@ -10,17 +10,22 @@ import input_output
 
 def a_simple_strategy(code):
     all_code_combinations = code_combination.generate_four_letter_code_combinations()
+    popped_code_combinations = []
 
     for round in range(11):
         feedback_answer = input_output.feedback_human(all_code_combinations[0], code)
 
-        if feedback_answer == code:
+        if round == 0:
+            popped_code_combinations = all_code_combinations
+
+        if feedback_answer == [4, 0]:
             print("The code has been cracked.")
+            exit()
         elif round == 11:
             print("The code has not been broken. The code was " + str(code))
+            exit()
         else:
-            pass
-            #scrub list
+            popped_code_combinations = code_combination.scrub_combination_list(popped_code_combinations, feedback_answer)
 
 
 def worst_case_strategy(code):
