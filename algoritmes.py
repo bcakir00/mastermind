@@ -38,6 +38,36 @@ def a_new_strategy(code):
 
 def heuristic_strategy(code):
     #make four guesses with duplicates (e.g. aaaa, bbbb, etc.) and safe per letter how many there are.
+    #swap pairs randomly, but check if the the letters are not the same and if the result of the swap hasn't been guessed before
 
+    letter_amount_dict = {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 0
+    }
 
-    pass
+    for x in range(3):
+        letter = chr(x + 97)
+        letter_amount_dict[letter] = code_combination.feedback_human([letter, letter, letter, letter], code)[0]
+    letter_amount_dict["d"] = 4 - letter_amount_dict["a"] - letter_amount_dict["b"] - letter_amount_dict["c"]
+
+    for x in range(8):
+        guess = []
+        keys = letter_amount_dict.keys()
+
+        for key in keys:
+            letter = key
+            amount = letter_amount_dict.get(key)
+
+            for x in range(amount):
+                guess.append(letter)
+
+        if code_combination.feedback_human(guess, code) == [4, 0]:
+            print("The code has been cracked.")
+            exit()
+        elif x == 7:
+            print("The code has not been broken. The code was " + str(code))
+        else:
+            pass
+            #swap pair
