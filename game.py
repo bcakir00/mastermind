@@ -32,7 +32,7 @@ if codebreaker == "2":
     for round in range(11):
         guess = list(input("Please insert guess in letters, from a to d (e.g. abcd): ")) #TODO: validate input
 
-        feedback_answer = input_output.feedback_computer(guess, code)
+        feedback_answer = code_combination.feedback_computer(guess, code)
         print(feedback_answer)
 
         if guess == code:

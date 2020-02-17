@@ -5,7 +5,6 @@
 
 
 import code_combination
-import input_output
 
 
 def a_simple_strategy(code):
@@ -13,7 +12,7 @@ def a_simple_strategy(code):
     popped_code_combinations = []
 
     for round in range(11):
-        feedback_answer = input_output.feedback_human(all_code_combinations[0], code)
+        feedback_answer = code_combination.feedback_human(all_code_combinations[0], code)
 
         if round == 0:
             popped_code_combinations = all_code_combinations
@@ -25,7 +24,8 @@ def a_simple_strategy(code):
             print("The code has not been broken. The code was " + str(code))
             exit()
         else:
-            popped_code_combinations = code_combination.scrub_combination_list(popped_code_combinations, feedback_answer)
+            popped_code_combinations = code_combination.scrub_combination_list(popped_code_combinations,
+                                                                               feedback_answer, code)
 
 
 def worst_case_strategy(code):

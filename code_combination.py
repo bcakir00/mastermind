@@ -12,13 +12,15 @@ def generate_code():
     return code
 
 
-def scrub_combination_list(combination_list, feedback):
-    for index in range(len(combination_list)):
+def scrub_combination_list(combination_list, feedback, code):
+    combination_list.pop(0)
 
-        a = combination_list[index]
+    for combination in combination_list:
+        feedback_answer = list(feedback_computer(combination, code))
 
-        if combination_list[index] != feedback: #TODO: fix feedback bug
-            combination_list.remove(combination_list[index])
+        if feedback_answer != feedback and feedback_answer != [4, 0]:
+
+            combination_list.remove(combination)
 
     return combination_list
 
@@ -40,3 +42,27 @@ def generate_four_letter_code_combinations():
                     combination_list.append([first_letter, second_letter, third_letter, fourth_letter])
 
     return combination_list
+
+
+def feedback_computer(guess, code):
+    guess_non_duplicates = list(dict.fromkeys(guess))
+    correct_letters = 0
+    correct_placements = 0
+
+    for x in range(4):
+        if guess[x] == code[x]:
+            correct_placements += 1
+
+    for letter in guess_non_duplicates:
+        correct_letters += code.count(letter)
+
+    return (correct_placements, abs(correct_letters - correct_placements))
+
+
+def feedback_human(guess, code):
+    print("The guess is " + str(guess) + " and the code was " + str(code))
+
+    correct_placements = int(input("How many placements and colors are correct: ")) #TODO: validate user input
+    correct_colors = int(input("How many only colors are correct: ")) #TODO: validate user input
+
+    return [correct_placements, correct_colors]
