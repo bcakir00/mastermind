@@ -45,7 +45,8 @@ def generate_four_letter_code_combinations():
 
 
 def feedback_computer(guess, code):
-    guess_non_duplicates = list(dict.fromkeys(guess))
+    code = ['c', 'a', 'd', 'c']
+    code_non_duplicates = list(dict.fromkeys(code))
     correct_letters = 0
     correct_placements = 0
 
@@ -53,10 +54,11 @@ def feedback_computer(guess, code):
         if guess[x] == code[x]:
             correct_placements += 1
 
-    for letter in guess_non_duplicates:
-        correct_letters += code.count(letter)
+    for letter in code_non_duplicates:
+        if letter in guess:
+            correct_letters += 1
 
-    return (correct_placements, abs(correct_letters - correct_placements))
+    return (correct_placements, correct_letters - correct_placements)
 
 
 def feedback_human(guess, code):

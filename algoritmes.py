@@ -72,12 +72,13 @@ def heuristic_strategy(code):
                 print("The code has not been broken. The code was " + str(code))
             else:
                 # swap pair
+                #TODO: Make following piece of code more abstract
                 if x % 3 == 0:
                     #swap first pair
-                    pass
+                    guess[0], guess[1] = guess[1], guess[0]
                 if x % 3 == 1:
                     #swap middle pair
-                    pass
+                    guess[1], guess[2] = guess[2], guess[1]
                 if x % 3 == 2:
                     #swap last pair
-                    pass
+                    guess[2], guess[3] = guess[3], guess[2]
