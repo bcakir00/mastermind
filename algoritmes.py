@@ -49,11 +49,12 @@ def heuristic_strategy(code):
     }
 
     for x in range(11):
-        if x < 3:
+        if x <= 2:
             letter = chr(x + 97)
             letter_amount_dict[letter] = code_combination.feedback_human([letter, letter, letter, letter], code)[0]
             letter_amount_dict["d"] = 4 - letter_amount_dict["a"] - letter_amount_dict["b"] - letter_amount_dict["c"]
 
+            #TODO: Put in function and add in code_combination module
             if x == 2:
                 keys = letter_amount_dict.keys()
 
@@ -71,5 +72,12 @@ def heuristic_strategy(code):
                 print("The code has not been broken. The code was " + str(code))
             else:
                 # swap pair
-
-                pass
+                if x % 3 == 0:
+                    #swap first pair
+                    pass
+                if x % 3 == 1:
+                    #swap middle pair
+                    pass
+                if x % 3 == 2:
+                    #swap last pair
+                    pass
