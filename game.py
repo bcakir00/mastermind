@@ -43,7 +43,7 @@ if codebreaker == "2":
 else:
     print("Game modes: \n"
         "1 - A Simple Strategy \n"
-        "2 - A New Strategy \n"
+        "2 - Worst Case Strategy \n"
         "3 - Heuristic Strategy \n")
     game_mode = int(input("Please select game mode: ")) # TODO: validate input
 
@@ -52,6 +52,6 @@ else:
     if game_mode == 1:
         algoritmes.a_simple_strategy(code)
     elif game_mode == 2:
-        algoritmes.a_new_strategy(code)
+        algoritmes.worst_case_strategy(code)
     else:
         algoritmes.heuristic_strategy(code)

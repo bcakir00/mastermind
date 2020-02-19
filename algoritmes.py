@@ -29,11 +29,13 @@ def a_simple_strategy(code):
 
 
 def worst_case_strategy(code):
-    pass
+    worst_case_partition_dict = code_combination.max_partition_size_per_combination()
+    minimum_guess = min(worst_case_partition_dict.values())
 
+    for row in worst_case_partition_dict:
+        a = row
+        b = 1
 
-def a_new_strategy(code):
-    pass
 
 
 def heuristic_strategy(code):
@@ -68,17 +70,18 @@ def heuristic_strategy(code):
             if code_combination.feedback_human(guess, code) == [4, 0]:
                 print("The code has been cracked.")
                 exit()
-            elif x == 7:
+            elif x == 10:
                 print("The code has not been broken. The code was " + str(code))
             else:
-                # swap pair
-                #TODO: Make following piece of code more abstract
                 if x % 3 == 0:
                     #swap first pair
-                    guess[0], guess[1] = guess[1], guess[0]
+                    if guess[0] != guess[1]:
+                        guess[0], guess[1] = guess[1], guess[0]
                 if x % 3 == 1:
                     #swap middle pair
-                    guess[1], guess[2] = guess[2], guess[1]
+                    if guess[1] != guess[2]:
+                        guess[1], guess[2] = guess[2], guess[1]
                 if x % 3 == 2:
                     #swap last pair
-                    guess[2], guess[3] = guess[3], guess[2]
+                    if guess[2] != guess[3]:
+                        guess[2], guess[3] = guess[3], guess[2]

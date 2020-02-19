@@ -44,8 +44,32 @@ def generate_four_letter_code_combinations():
     return combination_list
 
 
+def max_partition_size_per_combination():
+    all_code_combinations = generate_four_letter_code_combinations()
+    worst_case_partition_dict = {}
+
+    for guess in all_code_combinations:
+        feedback_list = []
+        feedback_count_dict = {'0,0': 0, '0,1': 0, '0,2': 0, '0,3': 0, '0,4': 0, '1,0': 0, '1,1': 0, '1,2': 0, '1,3': 0,
+                               '2,0': 0, '2,1': 0, '2,2': 0, '3,0': 0, '3,1': 0, '4,0': 0}
+
+        for combination in all_code_combinations:
+            feedback = list(feedback_computer(guess, combination))
+            feedback_list.append(feedback)
+
+        for key in feedback_count_dict:
+            lst_key = [int(key[0]), int(key[-1])]
+            feedback_count_dict[key] = feedback_list.count(lst_key)
+
+        max_partition_size = max(feedback_count_dict.values())
+        worst_case_partition_dict[str(guess)] = max_partition_size
+
+    return worst_case_partition_dict
+
+
 def feedback_computer(guess, code):
     guess_letter_list = []
+    guess_letter_non_duplicate_list = []
     code_letter_list = []
     correct_letters = 0
     correct_placements = 0
@@ -57,9 +81,14 @@ def feedback_computer(guess, code):
             code_letter_list.append(code[x])
             guess_letter_list.append(guess[x])
 
-    for guess_letter in guess_letter_list:
-        if guess_letter in code_letter_list:
-            correct_letters += 1
+            if guess[x] not in guess_letter_non_duplicate_list:
+                guess_letter_non_duplicate_list.append(guess[x])
+
+    for guess_letter in guess_letter_non_duplicate_list:
+        count_guess = guess_letter_list.count(guess_letter)
+        count_code = code_letter_list.count(guess_letter)
+
+        correct_letters += min(count_guess, count_code)
 
     return correct_placements, correct_letters
 
