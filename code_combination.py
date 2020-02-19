@@ -45,20 +45,24 @@ def generate_four_letter_code_combinations():
 
 
 def feedback_computer(guess, code):
-    code = ['c', 'a', 'd', 'c']
-    code_non_duplicates = list(dict.fromkeys(code))
+    code = ['a', 'b', 'a', 'c']
+    guess_letter_list = []
+    code_letter_list = []
     correct_letters = 0
     correct_placements = 0
 
     for x in range(4):
         if guess[x] == code[x]:
             correct_placements += 1
+        else:
+            code_letter_list.append(code[x])
+            guess_letter_list.append(guess[x])
 
-    for letter in code_non_duplicates:
-        if letter in guess:
+    for guess_letter in guess_letter_list:
+        if guess_letter in code_letter_list:
             correct_letters += 1
 
-    return (correct_placements, correct_letters - correct_placements)
+    return correct_placements, correct_letters
 
 
 def feedback_human(guess, code):
