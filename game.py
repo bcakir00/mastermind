@@ -18,13 +18,12 @@
 
 import algoritmes
 import code_combination
-import input_output
 
 
 print("Codebreaker: \n"
       "1 - Computer \n"
       "2 - Human \n")
-codebreaker = input("Please select codebreaker: ") #TODO: validate input
+codebreaker = input("Please select codebreaker: ")
 
 if codebreaker == "2":
     code = code_combination.generate_code()
@@ -40,14 +39,14 @@ if codebreaker == "2":
             exit()
         elif round == 10:
             print("The code has not been broken. The code was " + str(code))
-else:
+elif codebreaker == "1":
     print("Game modes: \n"
         "1 - A Simple Strategy \n"
         "2 - Worst Case Strategy \n"
         "3 - Heuristic Strategy \n")
-    game_mode = int(input("Please select game mode: ")) # TODO: validate input
+    game_mode = int(input("Please select game mode: "))
 
-    code = list(input("\nPlease insert code in letters, from a to d (e.g. abcd): "))  # TODO: validate input
+    code = list(input("\nPlease insert code in letters, from a to d (e.g. abcd): ")) #TODO: validate input
 
     if game_mode == 1:
         algoritmes.a_simple_strategy(code)
