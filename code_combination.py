@@ -120,7 +120,7 @@ def feedback_computer(guess, code):
 def feedback_human(guess, code):
     print("The guess is " + str(guess) + " and the code was " + str(code))
 
-    correct_placements = int(input("How many placements and colors are correct: "))
-    correct_colors = int(input("How many only colors are correct: "))
+    correct_placements = int(input("How many placements and colors are correct: ")) #TODO: validate input
+    correct_colors = int(input("How many only colors are correct: ")) #TODO: validate input
 
     return [correct_placements, correct_colors]

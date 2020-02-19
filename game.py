@@ -23,7 +23,7 @@ import code_combination
 print("Codebreaker: \n"
       "1 - Computer \n"
       "2 - Human \n")
-codebreaker = input("Please select codebreaker: ")
+codebreaker = input("Please select codebreaker: ") #TODO: validate input
 
 if codebreaker == "2":
     code = code_combination.generate_code()
@@ -44,7 +44,7 @@ elif codebreaker == "1":
         "1 - A Simple Strategy \n"
         "2 - Worst Case Strategy \n"
         "3 - Heuristic Strategy \n")
-    game_mode = int(input("Please select game mode: "))
+    game_mode = int(input("Please select game mode: ")) #TODO: validate input
 
     code = list(input("\nPlease insert code in letters, from a to d (e.g. abcd): ")) #TODO: validate input
 
