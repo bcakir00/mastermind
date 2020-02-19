@@ -45,7 +45,6 @@ def generate_four_letter_code_combinations():
 
 
 def feedback_computer(guess, code):
-    code = ['a', 'b', 'a', 'c']
     guess_letter_list = []
     code_letter_list = []
     correct_letters = 0
