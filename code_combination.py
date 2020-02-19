@@ -26,6 +26,7 @@ def scrub_combination_list(combination_list, feedback, code):
 
 
 def generate_four_letter_code_combinations():
+    #TODO: Make funtion abstract (parameter as input for size)
     combination_list = []
 
     for x in range(1, 5):
@@ -45,6 +46,29 @@ def generate_four_letter_code_combinations():
 
 
 def max_partition_size_per_combination():
+    all_code_combinations = generate_four_letter_code_combinations()
+    worst_case_partition_dict = {}
+
+    for guess in all_code_combinations:
+        feedback_list = []
+        feedback_count_dict = {'0,0': 0, '0,1': 0, '0,2': 0, '0,3': 0, '0,4': 0, '1,0': 0, '1,1': 0, '1,2': 0, '1,3': 0,
+                               '2,0': 0, '2,1': 0, '2,2': 0, '3,0': 0, '3,1': 0, '4,0': 0}
+
+        for combination in all_code_combinations:
+            feedback = list(feedback_computer(guess, combination))
+            feedback_list.append(feedback)
+
+        for key in feedback_count_dict:
+            lst_key = [int(key[0]), int(key[-1])]
+            feedback_count_dict[key] = feedback_list.count(lst_key)
+
+        max_partition_size = max(feedback_count_dict.values())
+        worst_case_partition_dict[str(guess)] = max_partition_size
+
+    return worst_case_partition_dict
+
+
+def max_partition_size_per_combination2():
     all_code_combinations = generate_four_letter_code_combinations()
     worst_case_partition_dict = {}
 

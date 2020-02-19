@@ -29,19 +29,31 @@ def a_simple_strategy(code):
 
 
 def worst_case_strategy(code):
-    worst_case_partition_dict = code_combination.max_partition_size_per_combination()
-    minimum_guess = min(worst_case_partition_dict.values())
+    """""1. get guess
+    2. make table based on guess against all combinations
+    3. ask feedback
+    4. use feedback to remove partition
+    5. loop if code hasn't been cracked"""
 
-    for row in worst_case_partition_dict:
-        a = row
-        b = 1
+    worst_case_partition_dict = code_combination.max_partition_size_per_combination()
+    minimum_partition_guess = min(worst_case_partition_dict.values())
+    best_guess = ''
+
+    for key in worst_case_partition_dict.keys():
+        x = worst_case_partition_dict.get(key)
+        if minimum_partition_guess == worst_case_partition_dict.get(key):
+            best_guess = key
+            break
+
+    x = 1
+
 
 
 
 def heuristic_strategy(code):
-    #make four guesses with duplicates (e.g. aaaa, bbbb, etc.) and safe per letter how many there are.
-    #swap pairs randomly, but check if the the letters are not the same and if the result of the swap hasn't been guessed before
-    swap_counter = 0
+    """make four guesses with duplicates (e.g. aaaa, bbbb, etc.) and safe per letter how many there are.
+    swap pairs randomly, but check if the the letters are not the same and if the result of the swap hasn't been guessed before"""
+
     guess = []
     letter_amount_dict = {
         "a": 0,
